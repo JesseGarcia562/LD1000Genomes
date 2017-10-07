@@ -1,0 +1,116 @@
+---
+title: "Attaining Data"
+author: "Jesse Garcia"
+date: October 6, 2016
+output: html_document
+---
+
+<!-- The file analysis/chunks.R contains chunks that define default settings
+shared across the workflowr files. -->
+```{r read-chunk, include=FALSE, cache=FALSE}
+knitr::read_chunk("chunks.R")
+```
+
+<!-- Update knitr chunk options -->
+```{r knitr-opts-chunk, include=FALSE}
+```
+
+<!-- Insert the date the file was last updated -->
+```{r last-updated, echo=FALSE, results='asis'}
+```
+
+<!-- Insert the code version (Git commit SHA1) if Git repository exists and R
+ package git2r is installed -->
+```{r code-version, echo=FALSE, results='asis'}
+```
+
+<!-- Add your analysis here -->
+
+Attaining 1000 Genome Data and Subsetting Into Genic and Neutral Regions
+
+
+
+
+This repository contains scripts related to the LD empirical analyses of 1000 Genome dataset. 
+
+
+#Tanya Phung's Work
+ALL OF THE BELOW (SCRIPTS AND COMMENTS) IS TANYA PHUNG'S WORK FOUND HERE:
+https://github.com/tnphung/1000G_Summary_Stats/
+
+I am attempting to replicate her analysis but instead of just looking at LD of neutral regions of the genome, I plan to look at the LD of selected sites. 
+
+
+##Subset individuals from 1000G 
+
+These individuals are extracted from 1000 Genomes:
+
+#####YRI: NA18505, NA18517, NA18916, NA18923, NA18877, NA18909, NA18858, NA18865, NA19116, NA19096 
+
+#####CEU: NA06984, NA06985, NA06986, NA06989, NA06994, NA07000, NA07037, NA07051, NA07056, NA07347 
+
+#####CHB: NA18525, NA18526, NA18528, NA18530, NA18531, NA18532, NA18533, NA18534, NA18535, NA18536
+
+To subset the 1000G vcf for each of these populations:
+
+> ./subset_YRI.sh
+
+
+> ./subset_CEU.sh
+
+
+> ./subset_CHB.sh
+
+Note that currenly the script is set up to run on UCLA Hoffman HPC
+
+## Extract neutral regions using the program Neutral Region Explorer [Arbiza et al. 2012](http://nre.cb.bscb.cornell.edu/nre/). Output can be found in the directory data/10kb_neutral_regions.
+
+### Filtering criteria:
+
+##### Select Regions to Exclude: 
+1. Known genes 
+2. Gene bounds 
+3. Spliced ESTs
+4. Segmental Duplications
+5. CNVs
+6. Self chain
+7. Reduced Repeat Masker
+
+##### Parameters:
+1. Miniumum region size: 200bp
+2. Recombination rate (cM/Mb): 0.8
+3. Genetic map: Decode
+4. Human diversity: YRI; Individuals: All; Mask: Strict
+5. Min BG selection coefficient: 0.95
+
+**NOTE: when selecting human diversity, one has to choose either CEU, YRI, or CHB. The neutral regions will likely differ depending which population to choose. Therefore, should we have a consensus neutral regions for all three populations?**
+
+The output is a file titled "results_hard.tsv". Found here: 
+
+<b> NOTE: Our copy only outputted results from chromosome 1-9...</b>
+
+> /data/results_Hard.tsv
+
+
+Splitting the data set by chromosome. 
+NRE outputs a whole file with all chromsomes together. Run 
+
+> R split_NRE_Results_Chrom.R
+
+
+###Process the output after running neutral region explorer program 
+
+From the directory 1000G_Summary_Stats/data/10kb_neutral_regions, do:
+
+>for i in {1..22}; do 
+>python ../../scripts/calc_neutralregion_length.py chr${i}_output_from_nre.txt > chr${i}_output_from_nre_clean.txt
+>done;
+
+* Output columns are (1) chr, (2) start, (3) end, (4) length, (5) rec, (6) bgs
+
+
+## Session information
+
+<!-- Insert the session information into the document -->
+```{r session-info}
+```
