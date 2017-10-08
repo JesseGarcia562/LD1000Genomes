@@ -103,9 +103,11 @@ Output will be NRE Results but split by chromosome.
 
 From the directory 1000G_Summary_Stats/data/10kb_neutral_regions, do:
 
+
 >for i in {1..22}; do 
->python ../../scripts/calc_neutralregion_length.py chr${i}_output_from_nre.txt > chr${i}_output_from_nre_clean.txt
+>python ../../scripts/calc_neutralregion_length.py chr\${i}_output_from_nre.txt > chr\${i}_output_from_nre_clean.txt
 >done;
+
 
 * Output columns are (1) chr, (2) start, (3) end, (4) length, (5) rec, (6) bgs
 
