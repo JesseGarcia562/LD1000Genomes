@@ -97,6 +97,7 @@ NRE outputs a whole file with all chromsomes together. Run
 
 > R split_NRE_Results_Chrom.R
 
+Output will be NRE Results but split by chromosome. 
 
 ###Process the output after running neutral region explorer program 
 
