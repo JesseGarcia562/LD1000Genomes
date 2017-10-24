@@ -1,6 +1,7 @@
 ##Summing D Primes
 
 
+
 ##Dprime Statistics
 require(data.table)
 setwd("/u/scratch/j/jessegar/1000GenomesLD/LDStats/YRI")
@@ -30,7 +31,7 @@ summingDPrime <- function(LDFileName){
   
   print(LDFileNameSplit)
   
-  
+
   
   
   #Mutation Type
@@ -55,7 +56,10 @@ summingDPrime <- function(LDFileName){
   #Dprime Positive/Negative Ratio
   DprimePositveNegativeRatio <- totalDPrimePositive/totalDPrimeNegative
   
-  metaData <- c(MutationType, totalDPrimePositive,totalDPrimeNegative,DprimePositveNegativeRatio)
+  #Chromosome Number
+  Chromosome <- LDFileNameSplit[2]
+      
+  metaData <- c(Chromosome,MutationType, totalDPrimePositive,totalDPrimeNegative,DprimePositveNegativeRatio)
   
   return(metaData)
 }
@@ -65,8 +69,9 @@ summingDPrime <- function(LDFileName){
 require(data.table)
 
 
-DPrimeStratifyTableYRIAll <- data.frame(matrix(ncol = 4, nrow = 1))
-colnames(DPrimeStratifyTableYRIAll) <- c("MutationType", "totalDPrimePositive","totalDPrimeNegative","DprimePositveNegativeRatio" )
+DPrimeStratifyTableYRIAll <- data.frame(matrix(ncol = 5, nrow = 1))
+colnames(DPrimeStratifyTableYRIAll) <- c("Chromosome","MutationType", "totalDPrimePositive","totalDPrimeNegative","DprimePositveNegativeRatio" )
+
 
 #For loop to do the function
 
@@ -74,10 +79,12 @@ for(fileName in fileNames){
   cat("\n",fileName)
   metaData <-summingDPrime(fileName)
   cat("\n",metaData)
-  DPrimeStratifyTableYRIAll <- rbind(DPrimeStratifyTableYRIAll, metaData)
+  BGSDPrimeStratifyTable <- rbind(DPrimeStratifyTableYRIAll, metaData)
 }
 
 DPrimeStratifyTableYRIAll <- DPrimeStratifyTableYRIAll[-1,]
 
 save(DPrimeStratifyTableYRIAll, file="DPrimeStratifyTableYRIAll")
+      
+
 
