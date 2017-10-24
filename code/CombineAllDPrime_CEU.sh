@@ -1,4 +1,5 @@
-##Summing D Primes
+
+##Summing D Primes For CEU
 
 
 ##Dprime Statistics
@@ -30,7 +31,7 @@ summingDPrime <- function(LDFileName){
   
   print(LDFileNameSplit)
   
-  
+
   
   
   #Mutation Type
@@ -55,7 +56,10 @@ summingDPrime <- function(LDFileName){
   #Dprime Positive/Negative Ratio
   DprimePositveNegativeRatio <- totalDPrimePositive/totalDPrimeNegative
   
-  metaData <- c(MutationType, totalDPrimePositive,totalDPrimeNegative,DprimePositveNegativeRatio)
+  #Chromosome Number
+  Chromosome <- LDFileNameSplit[2]
+      
+  metaData <- c(Chromosome,MutationType, totalDPrimePositive,totalDPrimeNegative,DprimePositveNegativeRatio)
   
   return(metaData)
 }
@@ -65,8 +69,9 @@ summingDPrime <- function(LDFileName){
 require(data.table)
 
 
-DPrimeStratifyTableCEUAll <- data.frame(matrix(ncol = 4, nrow = 1))
-colnames(DPrimeStratifyTableCEUAll) <- c("MutationType", "totalDPrimePositive","totalDPrimeNegative","DprimePositveNegativeRatio" )
+DPrimeStratifyTableYRIAll <- data.frame(matrix(ncol = 5, nrow = 1))
+colnames(DPrimeStratifyTableYRIAll) <- c("Chromosome","MutationType", "totalDPrimePositive","totalDPrimeNegative","DprimePositveNegativeRatio" )
+
 
 #For loop to do the function
 
@@ -74,11 +79,12 @@ for(fileName in fileNames){
   cat("\n",fileName)
   metaData <-summingDPrime(fileName)
   cat("\n",metaData)
-  DPrimeStratifyTableCEUAll <- rbind(DPrimeStratifyTableCEUAll, metaData)
+  BGSDPrimeStratifyTable <- rbind(DPrimeStratifyTableCEUAll, metaData)
 }
 
 DPrimeStratifyTableCEUAll <- DPrimeStratifyTableCEUAll[-1,]
 
 save(DPrimeStratifyTableCEUAll, file="DPrimeStratifyTableCEUAll")
+      
 
 
