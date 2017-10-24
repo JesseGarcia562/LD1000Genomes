@@ -69,8 +69,8 @@ summingDPrime <- function(LDFileName){
 require(data.table)
 
 
-DPrimeStratifyTableYRIAll <- data.frame(matrix(ncol = 5, nrow = 1))
-colnames(DPrimeStratifyTableYRIAll) <- c("Chromosome","MutationType", "totalDPrimePositive","totalDPrimeNegative","DprimePositveNegativeRatio" )
+DPrimeStratifyTableCEUAll <- data.frame(matrix(ncol = 5, nrow = 1))
+colnames(DPrimeStratifyTableCEUAll) <- c("Chromosome","MutationType", "totalDPrimePositive","totalDPrimeNegative","DprimePositveNegativeRatio" )
 
 
 #For loop to do the function
