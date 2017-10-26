@@ -79,7 +79,7 @@ for(fileName in fileNames){
   cat("\n",fileName)
   metaData <-summingDPrime(fileName)
   cat("\n",metaData)
-  BGSDPrimeStratifyTable <- rbind(DPrimeStratifyTableCHBAll, metaData)
+  DPrimeStratifyTableCHBAll <- rbind(DPrimeStratifyTableCHBAll, metaData)
 }
 
 DPrimeStratifyTableCHBAll <- DPrimeStratifyTableCHBAll[-1,]
