@@ -1,0 +1,366 @@
+
+R version 3.2.3 (2015-12-10) -- "Wooden Christmas-Tree"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> ##Merging Binned LD
+> require(data.table)
+Loading required package: data.table
+> setwd("/u/scratch/j/jessegar/1000GenomesLD/LDStats/CEU/BinnedLD")
+> #TODO SET PATH AND fileExtension
+> #Path is where the files are located "." means we are in the working directory
+> path="."
+> #FileExtension is the extension of the files you want to process
+> fileExtension <- "_LD.hap.ld_Binned$"
+> fileNames <- dir(path, pattern = fileExtension)
+> MergingBinnedStats <- function(LDFileName){
++   LDFile <- LDFileName
++   LDFile <- fread(LDFile)
++   #Is this a summary with BGS? If completely neutral, no BGS. 
++   if(grepl("YRI", LDFileName)){
++     Population="YRI"
++   } else if(grepl("CHB", LDFileName)) {
++     Population="CHB"
++   } else if(grepl("CEU", LDFileName)) {
++     Population="CEU"
++   } else {
++     #Defense against not being properly formated. Needs h0.0 or h0.5
++     stop("NOT A PROPERLY FORMATTED FILE. Data does not come from CEU,CHB, or YRI")
++   }
++   
++   #Split
++   LDFileNameSplit <- unlist(strsplit(LDFileName, split = "_"))
++   
++   print(LDFileNameSplit)
++   
++   
++   
++   
++   #Mutation Type
++   MutationType <- LDFileNameSplit[5]
++   if(MutationType=="Intron"){
++     MutationType <- "Intronic"
++   } else if (MutationType=="Nonsynonymous"){
++     MutationType <- "Nonsynonymous"
++   } else if (MutationType=="Synonymous"){
++     MutationType <-"Synonymous" 
++   } else if (MutationType=="Intergenic"){
++     MutationType <- "Intergenic"
++   } else {
++     #Defense against not being properly formated. Needs NeutralVCF, NonsynonymousVCF, SynonymousVCF
++     stop("NOT A PROPERLY FORMATTED FILE (VCF type is wrong) Mutation Types do Not Match")
++   }
++   
++   Chromosome <- LDFileNameSplit[2]
++ 
++   #Attaching Attributes
++   
++   LDFile$Chromosome <- Chromosome
++   LDFile$Population <- Population
++   LDFile$Variant <- MutationType
++   
++   return(LDFile)
++ }
+> 
+> 
+> #Binning LD
+> require(data.table)
+> 
+> 
+> BinnedLDTableCEUAll <- data.frame(matrix(ncol = 10, nrow = 1))
+> colnames(BinnedLDTableCEUAll) <- c(c("BIN_START", "BIN_END", "DPRIMESUM", "NumberSNPs", "POSITIVE1DPrime", "NEGATIVE1DPrime", "RSQUAREDSum", "Chromosome", "Population", "Variant") )
+> 
+> #For loop to do the function
+> 
+> for(fileName in fileNames){
++   cat("\n",fileName)
++   ProcessedLDFile <-MergingBinnedStats(fileName)
++   BinnedLDTableCEUAll <- rbind(BinnedLDTableCEUAll, ProcessedLDFile)
++ }
+
+ chr_10_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "10"         "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_10_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "10"        "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_10_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "10"            "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_10_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "10"         "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_1_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "1"          "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_1_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "1"         "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_1_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "1"             "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_1_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "1"          "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_11_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "11"         "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_11_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "11"        "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_11_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "11"            "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_11_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "11"         "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_12_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "12"         "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_12_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "12"        "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_12_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "12"            "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_12_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "12"         "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_13_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "13"         "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_13_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "13"        "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_13_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "13"            "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_13_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "13"         "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_14_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "14"         "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_14_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "14"        "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_14_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "14"            "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_14_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "14"         "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_15_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "15"         "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_15_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "15"        "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_15_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "15"            "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_15_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "15"         "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_16_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "16"         "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_16_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "16"        "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_16_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "16"            "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_16_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "16"         "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_17_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "17"         "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_17_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "17"        "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_17_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "17"            "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_17_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "17"         "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_18_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "18"         "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_18_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "18"        "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_18_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "18"            "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_18_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "18"         "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_19_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "19"         "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_19_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "19"        "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_19_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "19"            "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_19_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "19"         "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_20_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "20"         "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_20_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "20"        "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_20_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "20"            "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_20_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "20"         "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_2_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "2"          "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_2_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "2"         "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_2_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "2"             "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_2_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "2"          "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_21_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "21"         "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_21_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "21"        "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_21_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "21"            "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_21_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "21"         "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_22_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "22"         "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_22_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "22"        "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_22_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "22"            "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_22_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "22"         "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_3_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "3"          "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_3_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "3"         "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_3_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "3"             "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_3_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "3"          "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_4_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "4"          "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_4_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "4"         "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_4_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "4"             "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_4_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "4"          "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_5_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "5"          "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_5_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "5"         "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_5_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "5"             "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_5_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "5"          "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_6_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "6"          "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_6_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "6"         "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_6_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "6"             "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_6_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "6"          "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_7_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "7"          "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_7_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "7"         "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_7_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "7"             "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_7_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "7"          "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_8_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "8"          "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_8_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "8"         "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_8_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "8"             "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_8_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "8"          "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_9_10_CEU_Intergenic_LD.hap.ld_Binned[1] "chr"        "9"          "10"         "CEU"        "Intergenic"
+[6] "LD.hap.ld"  "Binned"    
+
+ chr_9_10_CEU_Intron_LD.hap.ld_Binned[1] "chr"       "9"         "10"        "CEU"       "Intron"    "LD.hap.ld"
+[7] "Binned"   
+
+ chr_9_10_CEU_Nonsynonymous_LD.hap.ld_Binned[1] "chr"           "9"             "10"            "CEU"          
+[5] "Nonsynonymous" "LD.hap.ld"     "Binned"       
+
+ chr_9_10_CEU_Synonymous_LD.hap.ld_Binned[1] "chr"        "9"          "10"         "CEU"        "Synonymous"
+[6] "LD.hap.ld"  "Binned"    
+> 
+> BinnedLDTableCEUAll <- BinnedLDTableCEUAll[-1,]
+> 
+> write.csv(BinnedLDTableCEUAll, file="BinnedLDTableCEUAll.csv", quote=FALSE)
+> 
+> 
+> proc.time()
+   user  system elapsed 
+  1.588   0.088   2.981 

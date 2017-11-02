@@ -1,0 +1,134 @@
+mkdir: cannot create directory `/u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/Doubletons': File exists
+mkdir: cannot create directory `/u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/Doubletons/LDStats': File exists
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/chr16_10CEUAnnotated.vcf_Intergenic.recode.vcf
+	--recode-INFO-all
+	--max-non-ref-ac 2
+	--non-ref-ac 2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/Doubletons/chr_16_10_CEU_Intergenic_doubletons
+	--recode
+
+After filtering, kept 50 out of 50 Individuals
+Outputting VCF file...
+After filtering, kept 326 out of a possible 3773 Sites
+Run Time = 1.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/Doubletons/chr_16_10_CEU_Intergenic_doubletons.recode.vcf
+	--ld-window-bp 10000
+	--max-alleles 2
+	--min-alleles 2
+	--hap-r2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/Doubletons/LDStats/chr_16_10_CEU_Intergenic_LD
+	--phased
+
+After filtering, kept 50 out of 50 Individuals
+Outputting Pairwise LD (phased bi-allelic only)
+After filtering, kept 326 out of a possible 326 Sites
+Run Time = 10.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/chr16_10CEUAnnotated.vcf_Synonymous.recode.vcf
+	--recode-INFO-all
+	--max-non-ref-ac 2
+	--non-ref-ac 2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/Doubletons/chr_16_10_CEU_Synonymous_doubletons
+	--recode
+
+After filtering, kept 50 out of 50 Individuals
+Outputting VCF file...
+After filtering, kept 113 out of a possible 1677 Sites
+Run Time = 0.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/Doubletons/chr_16_10_CEU_Synonymous_doubletons.recode.vcf
+	--ld-window-bp 10000
+	--max-alleles 2
+	--min-alleles 2
+	--hap-r2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/Doubletons/LDStats/chr_16_10_CEU_Synonymous_LD
+	--phased
+
+After filtering, kept 50 out of 50 Individuals
+Outputting Pairwise LD (phased bi-allelic only)
+After filtering, kept 113 out of a possible 113 Sites
+Run Time = 0.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/chr16_10CEUAnnotated.vcf_Nonsynonymous.recode.vcf
+	--recode-INFO-all
+	--max-non-ref-ac 2
+	--non-ref-ac 2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/Doubletons/chr_16_10_CEU_Nonsynonymous_doubletons
+	--recode
+
+After filtering, kept 50 out of 50 Individuals
+Outputting VCF file...
+After filtering, kept 154 out of a possible 1386 Sites
+Run Time = 1.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/Doubletons/chr_16_10_CEU_Nonsynonymous_doubletons.recode.vcf
+	--ld-window-bp 10000
+	--max-alleles 2
+	--min-alleles 2
+	--hap-r2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/Doubletons/LDStats/chr_16_10_CEU_Nonsynonymous_LD
+	--phased
+
+After filtering, kept 50 out of 50 Individuals
+Outputting Pairwise LD (phased bi-allelic only)
+After filtering, kept 154 out of a possible 154 Sites
+Run Time = 0.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/chr16_10CEUAnnotated.vcf_Intron.recode.vcf
+	--recode-INFO-all
+	--max-non-ref-ac 2
+	--non-ref-ac 2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/Doubletons/chr_16_10_CEU_Intron_doubletons
+	--recode
+
+After filtering, kept 50 out of 50 Individuals
+Outputting VCF file...
+After filtering, kept 8973 out of a possible 119432 Sites
+Run Time = 6.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/Doubletons/chr_16_10_CEU_Intron_doubletons.recode.vcf
+	--ld-window-bp 10000
+	--max-alleles 2
+	--min-alleles 2
+	--hap-r2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/CEU2/VariantSplit/Doubletons/LDStats/chr_16_10_CEU_Intron_LD
+	--phased
+
+After filtering, kept 50 out of 50 Individuals
+Outputting Pairwise LD (phased bi-allelic only)
+After filtering, kept 8973 out of a possible 8973 Sites
+Run Time = 1.00 seconds

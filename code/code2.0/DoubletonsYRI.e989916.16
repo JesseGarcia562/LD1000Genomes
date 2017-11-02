@@ -1,0 +1,134 @@
+mkdir: cannot create directory `/u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons': File exists
+mkdir: cannot create directory `/u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons/LDStats': File exists
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/chr16_10YRIAnnotated.vcf_Intergenic.recode.vcf
+	--recode-INFO-all
+	--max-non-ref-ac 2
+	--non-ref-ac 2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons/chr_16_10_YRI_Intergenic_doubletons
+	--recode
+
+After filtering, kept 50 out of 50 Individuals
+Outputting VCF file...
+After filtering, kept 699 out of a possible 6549 Sites
+Run Time = 1.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons/chr_16_10_YRI_Intergenic_doubletons.recode.vcf
+	--ld-window-bp 10000
+	--max-alleles 2
+	--min-alleles 2
+	--hap-r2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons/LDStats/chr_16_10_YRI_Intergenic_LD
+	--phased
+
+After filtering, kept 50 out of 50 Individuals
+Outputting Pairwise LD (phased bi-allelic only)
+After filtering, kept 699 out of a possible 699 Sites
+Run Time = 13.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/chr16_10YRIAnnotated.vcf_Synonymous.recode.vcf
+	--recode-INFO-all
+	--max-non-ref-ac 2
+	--non-ref-ac 2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons/chr_16_10_YRI_Synonymous_doubletons
+	--recode
+
+After filtering, kept 50 out of 50 Individuals
+Outputting VCF file...
+After filtering, kept 280 out of a possible 2672 Sites
+Run Time = 1.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons/chr_16_10_YRI_Synonymous_doubletons.recode.vcf
+	--ld-window-bp 10000
+	--max-alleles 2
+	--min-alleles 2
+	--hap-r2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons/LDStats/chr_16_10_YRI_Synonymous_LD
+	--phased
+
+After filtering, kept 50 out of 50 Individuals
+Outputting Pairwise LD (phased bi-allelic only)
+After filtering, kept 280 out of a possible 280 Sites
+Run Time = 0.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/chr16_10YRIAnnotated.vcf_Nonsynonymous.recode.vcf
+	--recode-INFO-all
+	--max-non-ref-ac 2
+	--non-ref-ac 2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons/chr_16_10_YRI_Nonsynonymous_doubletons
+	--recode
+
+After filtering, kept 50 out of 50 Individuals
+Outputting VCF file...
+After filtering, kept 285 out of a possible 2120 Sites
+Run Time = 0.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons/chr_16_10_YRI_Nonsynonymous_doubletons.recode.vcf
+	--ld-window-bp 10000
+	--max-alleles 2
+	--min-alleles 2
+	--hap-r2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons/LDStats/chr_16_10_YRI_Nonsynonymous_LD
+	--phased
+
+After filtering, kept 50 out of 50 Individuals
+Outputting Pairwise LD (phased bi-allelic only)
+After filtering, kept 285 out of a possible 285 Sites
+Run Time = 0.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/chr16_10YRIAnnotated.vcf_Intron.recode.vcf
+	--recode-INFO-all
+	--max-non-ref-ac 2
+	--non-ref-ac 2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons/chr_16_10_YRI_Intron_doubletons
+	--recode
+
+After filtering, kept 50 out of 50 Individuals
+Outputting VCF file...
+After filtering, kept 22387 out of a possible 201489 Sites
+Run Time = 12.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons/chr_16_10_YRI_Intron_doubletons.recode.vcf
+	--ld-window-bp 10000
+	--max-alleles 2
+	--min-alleles 2
+	--hap-r2
+	--out /u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons/LDStats/chr_16_10_YRI_Intron_LD
+	--phased
+
+After filtering, kept 50 out of 50 Individuals
+Outputting Pairwise LD (phased bi-allelic only)
+After filtering, kept 22387 out of a possible 22387 Sites
+Run Time = 3.00 seconds
