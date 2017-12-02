@@ -1,0 +1,24 @@
+#!/bin/bash
+#$ -cwd
+#$ -V
+#$ -N interpolate
+#$ -l highp,h_data=8G,time=24:00:00
+#$ -M eplau
+#$ -m ea
+
+
+##Only Nonsynonymous Variants from YRI
+geneticMapDirectory=/u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/GeneticMap
+codeDirectory=/u/scratch/j/jessegar/LD1000Genomes/code/code2.0
+LDStatsDirectory=/u/home/j/jessegar/project-klohmuel/LD1000GenomePolarizedVCF/YRI2/VariantSplit/Doubletons/LDStats
+mkdir ${LDStatsDirectory}/interpolatedGeneticDistance
+
+	for i in {1..22}
+	do
+	if [ "$i" -eq 4 ]
+	then
+		continue
+	fi
+python ${codeDirectory}/interpolate_genetic_distance_LD.py --genetic_map ${geneticMapDirectory}/chr${i}_average_noncarrier.gmap --coordinates ${LDStatsDirectory}/chr_${i}_10_YRI_Nonsynonymous_LD.hap.ld --outfile ${LDStatsDirectory}/interpolatedGeneticDistance/chr_${i}_10_YRI_Nonsynonymous_LD.interpolatedGeneticDistance.txt
+python ${codeDirectory}/interpolate_genetic_distance_LD.py --genetic_map ${geneticMapDirectory}/chr${i}_average_noncarrier.gmap --coordinates ${LDStatsDirectory}/chr_${i}_10_YRI_Synonymous_LD.hap.ld --outfile ${LDStatsDirectory}/interpolatedGeneticDistance/chr_${i}_10_YRI_Synonymous_LD.interpolatedGeneticDistance.txt
+done
